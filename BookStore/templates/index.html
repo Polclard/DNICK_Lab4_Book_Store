@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %} All Books{% endblock %}
+{% block titlePage %} {% endblock %}
+
+{% block main %}
+    <div style="float: right; height: 100px; margin-right: 10px;">
+        <a href="{% url 'add_book' %}" class="btn btn-primary">
+            Add new book
+        </a>
+    </div>
+    <div class="container d-4">
+        {% for item in books_list %}
+
+        {% if forloop.counter0|modulo:3 == 0 %}
+            <div class="row">
+        {% endif %}
+
+            <div class="col-3 m-5">
+                <div class="card" style="width: 25rem; ">
+                    <div class="m-3">
+                        <a href="{% url 'book_details' book_id=item.id %}">
+                            <img src="{{item.image.url}}" class="card-img-top" style="box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.61);" alt="{{item.title}} book picture" width="400px" height="550px;">
+                        </a>
+                    </div>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <p class="card-text">Price: {{ item.price }}</p>
+                        <a href="{% url 'book_details' book_id=item.id %}" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+
+        {% if forloop.counter0|modulo:3 == 2 %}
+            </div>
+        {% endif %}
+
+        {% endfor %}
+    </div>
+{% endblock %}

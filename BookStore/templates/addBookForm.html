@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Add new Book{% endblock %}
+{% block titlePage %} <h1>Add New Book</h1> {% endblock %}
+
+{% block main %}
+    {% load crispy_forms_tags %}
+    <div class="container p-5">
+        <form action="/books/add/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary" value="Submit">Submit</button>
+            <a href="{% url 'index' %}" class="btn btn-primary" style="float: right;">Go back</a>
+        </form>
+    </div>
+
+{% endblock %}

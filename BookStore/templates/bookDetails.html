@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} Details for {{ found_book.title }}{% endblock %}
+{% block titlePage %}<h2> {{ found_book.title }}</h2> {% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div style="display:flex; justify-content: space-evenly;">
+            <div>
+                <div style="box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.61); margin: auto; text-align: center; padding: 30px 10px 10px 10px;">
+                    <img src="{{ found_book.image.url }}" alt="{{ found_book.title }}" width="400px;" height="550px">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h5>Publishing House: {{ found_book.publishing_house.name }}</h5>
+                    <h5>Category: {{ found_book.category }}</h5>
+                    <h5>ISBN: {{ found_book.ISBN }}</h5>
+                    <h5>Release Date: {{ found_book.release_date.date }}</h5>
+                    <h5>Number of pages: {{ found_book.number_of_pages }}</h5>
+                    <h5>Dimensions: {{ found_book.dimensions }}</h5>
+                    <h5>Page type: {{ found_book.page_type }}</h5>
+                    <h5>Price: {{ found_book.price }} den</h5>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="float: right">
+        <a href="{% url 'index' %}" class="btn btn-primary p-3 m-3">Go back</a>
+    </div>
+{% endblock %}
